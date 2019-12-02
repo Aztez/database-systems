@@ -1,0 +1,319 @@
+SQL> CREATE TABLE T_CUSTOMERS (
+  2  ID INT PRIMARY KEY,
+  3  NAME VARCHAR(255),
+  4  EMAIL VARCHAR(255),
+  5  BDATE DATE);
+
+Taulu on luotu.
+
+SQL> INSERT INTO T_CUSTOMERS (ID, NAME, EMAIL, BDATE)
+  2  VALUES (1, 'Niko Hartikainen', 'niko.hartikainen@gmail.com', TO_DATE('01.01.1987', 'DD.MM.YYYY'));
+
+1 rivi on luotu.
+
+SQL> INSERT INTO T_CUSTOMERS (ID, NAME, EMAIL, BDATE)
+  2  VALUES (2, 'Pasi Untamo Hintikka', 'pasi.hintikka@gmail.com', TO_DATE('10.05.1977', 'DD.MM.YYYY'));
+
+1 rivi on luotu.
+
+SQL> INSERT INTO T_CUSTOMERS (ID, NAME, EMAIL, BDATE)
+  2  VALUES (3, 'Tapio Nevala', 'tapio.nevala@gmail.com', TO_DATE('31.01.1988', 'DD.MM.YYYY'));
+
+1 rivi on luotu.
+
+SQL> INSERT INTO T_CUSTOMERS (ID, NAME, EMAIL, BDATE)
+  2  VALUES (4, 'Kaarina Pokka', 'kaarina.pokka@gmail.com', TO_DATE('01.01.1990', 'DD.MM.YYYY'));
+
+1 rivi on luotu.
+
+SQL> INSERT INTO T_CUSTOMERS (ID, NAME, EMAIL, BDATE)
+  2  VALUES (5, 'Esteri Mari Ihalainen', 'esteri.ihalainen@gmail.com', TO_DATE('12.02.2002', 'DD.MM.YYYY'));
+
+1 rivi on luotu.
+
+SQL> INSERT INTO T_CUSTOMERS (ID, NAME, EMAIL, BDATE)
+  2  VALUES (6, 'Milja Niina Pennanen', 'milja.pennanen@gmail.com', TO_DATE('20.02.1986', 'DD.MM.YYYY'));
+
+1 rivi on luotu.
+
+SQL> INSERT INTO T_CUSTOMERS (ID, NAME, EMAIL, BDATE)
+  2  VALUES (7, 'Emma Jalonen', 'emma.jalonen@gmail.com', TO_DATE('19.07.1987', 'DD.MM.YYYY'));
+
+1 rivi on luotu.
+
+SQL> INSERT INTO T_CUSTOMERS (ID, NAME, EMAIL, BDATE)
+  2  VALUES (8, 'Juuso Risto Rannisto', 'juuso.ranninen@gmail.com', TO_DATE('05.05.1970', 'DD.MM.YYYY'));
+
+1 rivi on luotu.
+
+
+
+
+
+
+SQL> CREATE TABLE T_ITEM (
+  2  ID INT PRIMARY KEY,
+  3  TITLE VARCHAR(250) );
+
+Taulu luotu.
+
+SQL> CREATE TABLE T_BOOK (
+  2  ID INT,
+  3  CATEGORY VARCHAR(50),
+  4  PRIMARY KEY(ID),
+  5  FOREIGN KEY(ID) REFERENCES T_ITEM(ID) );
+
+Taulu luotu.
+
+SQL> CREATE TABLE T_MOVIE (
+  2  ID INT,
+  3  GENRE VARCHAR(50),
+  4  AGEGROUP INT,
+  5  PRIMARY KEY(ID),
+  6  FOREIGN KEY(ID) REFERENCES T_ITEM(ID) );
+
+Taulu luotu.
+
+
+
+
+SQL> INSERT INTO T_ITEM (ID, TITLE)
+  2  VALUES (1, 'Cracking the Coding Interview Programming Questions and Solutions');
+
+1 rivi on luotu.
+
+SQL> INSERT INTO T_ITEM (ID, TITLE)
+  2  VALUES (2, 'The Self-Taught Programmer The Definitive Guide to Programming Professionally');
+
+1 rivi on luotu.
+
+SQL> INSERT INTO T_ITEM (ID, TITLE)
+  2  VALUES (3, 'Data Science with Java Practical Methods for Scientists and Engineers');
+
+1 rivi on luotu.
+
+SQL> INSERT INTO T_ITEM (ID, TITLE)
+  2  VALUES (4, 'Mediterranean Cookbook For Beginners, Lose Weight And Get Healthy');
+
+1 rivi on luotu.
+
+SQL> INSERT INTO T_ITEM (ID, TITLE)
+  2  VALUES (5, 'The Shape of Water');
+
+1 rivi on luotu.
+
+SQL> INSERT INTO T_ITEM (ID, TITLE)
+  2  VALUES (6, 'Lady bird');
+
+1 rivi on luotu.
+
+SQL> INSERT INTO T_ITEM (ID, TITLE)
+  2  VALUES (7, 'Star Wars The Last Jedi');
+
+1 rivi on luotu.
+
+SQL> INSERT INTO T_ITEM (ID, TITLE)
+  2  VALUES (8, 'The Florida Project');
+
+1 rivi on luotu.
+
+SQL> INSERT INTO T_ITEM (ID, TITLE)
+  2  VALUES (9, 'Movie Title');
+
+1 rivi on luotu.
+
+
+
+
+SQL> INSERT INTO T_BOOK (ID, CATEGORY)
+  2  VALUES (1, 'Programming');
+
+1 rivi on luotu.
+
+SQL> INSERT INTO T_BOOK (ID, CATEGORY)
+  2  VALUES (2, 'Programming');
+
+1 rivi on luotu.
+
+SQL> INSERT INTO T_BOOK (ID, CATEGORY)
+  2  VALUES (3, 'Data Science');
+
+1 rivi on luotu.
+
+SQL> INSERT INTO T_BOOK (ID, CATEGORY)
+  2  VALUES (4, 'Wellbeing');
+
+1 rivi on luotu.
+
+
+
+
+SQL> INSERT INTO T_MOVIE (ID, GENRE, AGEGROUP)
+  2  VALUES (5, 'Drama', 16);
+
+1 rivi on luotu.
+
+SQL> INSERT INTO T_MOVIE (ID, GENRE, AGEGROUP)
+  2  VALUES (6, 'Romance', 16);
+
+1 rivi on luotu.
+
+SQL> INSERT INTO T_MOVIE (ID, GENRE, AGEGROUP)
+  2  VALUES (7, 'Action', 16);
+
+1 rivi on luotu.
+
+SQL> INSERT INTO T_MOVIE (ID, GENRE, AGEGROUP)
+  2  VALUES (8, 'Comedy', 5);
+
+1 rivi on luotu.
+
+SQL> INSERT INTO T_MOVIE (ID, GENRE, AGEGROUP)
+  2  VALUES (9, 'X-rated', 18);
+
+1 rivi on luotu.
+
+
+
+
+SQL> CREATE TABLE T_LOAN (
+  2  BORROWDATE DATE,
+  3  RETURNDATE DATE,
+  4  CUSTOMER INT REFERENCES T_CUSTOMERS(ID),
+  5  ITEM INT REFERENCES T_ITEM(ID),
+  6  PRIMARY KEY (CUSTOMER, ITEM) );
+
+Taulu luotu.
+
+
+
+SQL> INSERT INTO T_LOAN (BORROWDATE, CUSTOMER, ITEM)
+  2  VALUES ('1.2.2014', 1, 1);
+
+1 rivi luotu.
+
+SQL> INSERT INTO T_LOAN (BORROWDATE, CUSTOMER, ITEM)
+  2  VALUES ('1.2.2014', 1, 2);
+
+1 rivi luotu.
+
+SQL> INSERT INTO T_LOAN (BORROWDATE, CUSTOMER, ITEM)
+  2  VALUES ('5.2.2014', 6, 4);
+
+1 rivi luotu.
+
+SQL> INSERT INTO T_LOAN (BORROWDATE, CUSTOMER, ITEM)
+  2  VALUES ('5.2.2014', 6, 6);
+
+1 rivi luotu.
+
+SQL> INSERT INTO T_LOAN (BORROWDATE, CUSTOMER, ITEM)
+  2  VALUES ('8.2.2014', 2, 3);
+
+1 rivi luotu.
+
+SQL> INSERT INTO T_LOAN (BORROWDATE, CUSTOMER, ITEM)
+  2  VALUES ('9.2.2014', 5, 8);
+
+1 rivi luotu.
+
+SQL> INSERT INTO T_LOAN (BORROWDATE, CUSTOMER, ITEM)
+  2  VALUES ('9.2.2014', 5, 9);
+
+1 rivi luotu.
+
+
+
+
+UPDATES:
+
+SQL> UPDATE T_LOAN SET borrowDate = TO_DATE ('01.02.2014','DD.MM.YYYY'),
+returnDate = TO_DATE('10.02.2014','DD.MM.YYYY') 
+WHERE customer = 1;
+
+
+
+2 rivia on paivitetty.
+
+
+
+SQL> UPDATE T_LOAN SET borrowDate = TO_DATE('05.02.2014','DD.MM.YYYY') 
+WHERE customer = 6;
+
+
+
+2 rivia on paivitetty.
+
+
+
+SQL> UPDATE T_LOAN SET borrowDate = TO_DATE('08.02.2014','DD.MM.YYYY') 
+WHERE customer = 2;
+
+
+
+1 rivi on paivitetty.
+
+
+
+SQL> UPDATE T_LOAN SET borrowDate = TO_DATE('09.02.2014','DD.MM.YYYY') 
+WHERE customer = 5;
+
+
+
+2 rivia on paivitetty.
+
+
+
+
+
+QUERIES:
+
+SQL> SELECT name, title FROM T_item, T_customers, T_loan, T_movie WHERE T_item.id = item AND T_customers.id = customers AND T_item = T_movie.id AND genre = 'romance';
+
+SQL> SELECT title FROM T_item WHERE ID IN (SELECT ITEM FROM T_LOAN WHERE retundate is NULL);
+
+SQL> SELECT name, title FROM T_customers, T_item, T_movie, T_loan WHERE T_item.ID = item AND T_customer.ID = customer and T_item.ID = T.movie.id AND agegroup = 18 AND BDATE > '05.02.1996';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

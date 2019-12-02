@@ -1,0 +1,82 @@
+A.
+
+SELECT name, home FROM member WHERE sex = 'M' AND sdate IS NULL AND home = 'Kempele' OR home = 'Liminka' OR home = 'Tyrnava';
+
+B.
+
+SELECT name FROM member WHERE sex = 'F' ORDER BY name DESC;
+
+C.
+
+SELECT member.name, year.year FROM member INNER JOIN year ON year.chair = member.num;
+
+or
+
+SELECT name, year FROM member, year WHERE year.chair = member.num;
+
+D.
+
+SELECT name FROM member, year WHERE year.chair = member.num UNION SELECT name FROM member, year WHERE year.secretary = member.num;
+
+E.
+
+SELECT name FROM member, year WHERE sex = 'F' AND home = 'Oulu' AND year.chair = member.num;
+
+F.
+
+SELECT datum FROM hunting WHERE bulls <= 0 AND calves > 0;
+
+G.
+
+
+SELECT DISTINCT name FROM hunters, member WHERE role = 'beater' AND hunters.memno = member.num;
+
+H1.
+
+SELECT DISTINCT name FROM member, hunting WHERE bulls > 0 AND hunting.master = member.num;
+
+
+H2.
+ 
+
+SELECT DISTINCT name FROM member, hunting WHERE num NOT IN (SELECT master FROM hunting WHERE master=num);
+
+H3.
+
+SELECT COUNT (name) FROM memeber, hunting WHERE num = master GROUP BY name HAVING SUM (BULLS) = 0;
+
+H4.
+
+SELECT DISTINCT name FROM member, hunting WHERE num = master AND bulls > 0 MINUS SELECT DISTINCT name FROM member, hunting WHERE num = master AND bulls = 0;
+
+I.
+
+SELECT X.NAME, Y.NAME FROM member X join member Y ON X.NUM = Y.REFER;
+
+J1.
+
+SELECT DISTINCT chair FROM year, hunters WHERE chair NOT IN (SELECT memno FROM hunters WHERE role = 'shooter');
+
+J2.
+
+SELECT DISTINCT name, bdate FROM member, year, hunters WHERE chair NOT IN (SELECT memno FROM hunters WHERE role = 'shooter') AND num = chair;
+
+K.
+
+SELECT name FROM member, year WHERE num = chair GROUP BY name HAVING COUNT (name) > 1;
+
+L.
+
+SELECT name FROM member, year WHERE num = chair AND NUM IN (select t.chair from year t, year u WHERE t.chair = u.secretary AND t.year = u.year + 1);
+
+M.
+
+SELECT COUNT(*), sex FROM member GROUP BY sex;
+
+N.
+
+SELECT name FROM member WHERE bdate = (SELECT MAX (bdate) FROM member WHERE SDATE IS NULL);
+
+O. 
+
+SELECT year FROM year WHERE budget < (SELECT MEDIAN (budget) FROM year);
